@@ -14,6 +14,7 @@ export const ClassSelector = (): ReactElement => {
   const changeHandler = (e: number): void => {
     dispatch(changeClass(e))
   }
+  console.log("test class")
 
   return (
     <select onChange={e => { changeHandler(Number(e.target.value)) }} >

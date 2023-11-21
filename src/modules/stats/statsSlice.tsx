@@ -28,10 +28,12 @@ export const counterSlice = createSlice({
       const value = state.stats.baseStats[action.payload] + 1
       const maxStats = state.stats.maxStats
       state.stats.baseStats[action.payload] = value > maxStats ? maxStats : value
+      state.stats.statPointsLeft = updateStatPointLeft(state.stats.statPointsCap, state.stats.baseStats)
     },
     decrement: (state, action: PayloadAction<keyof IBaseStats>): void => {
       const value = state.stats.baseStats[action.payload] - 1
       state.stats.baseStats[action.payload] = value < 1 ? 1 : value
+      state.stats.statPointsLeft = updateStatPointLeft(state.stats.statPointsCap, state.stats.baseStats)
     },
     changeClass: (state, action: PayloadAction<number>): void => {
       state.stats.maxStats = statCap[ClassInfo[action.payload].type as keyof IStatCap] // TODO remove as "as keyof IStatCap"?
