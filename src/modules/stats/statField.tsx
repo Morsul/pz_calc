@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
-import { increment, decrement } from './statsSlice'
-import { useDispatch } from 'react-redux'
+import { setValue, getMaxStat } from './statsSlice'
+import { useDispatch, useSelector } from 'react-redux'
 import { type IStatFields } from '../defaults/types'
 
 // export const StatField = ({ statName, currentVal }: IStatFields): JSX.Element => {
@@ -29,12 +29,16 @@ export const StatField = memo(function StatField ({ statName, currentVal }: ISta
 
   const nextUpCost = currentVal < 100 ? Math.floor((currentVal - 1) / 10) + 2 : 4 * Math.floor((currentVal - 100) / 10) + 16
 
+  const changeValue = (e: { target: { value: any } }): void => {
+    dispatch(setValue({ name: statName, amount: e.target.value }))
+  }
+
   return (
     <div className={'manual_stat' + statName}>
-      <button onClick={() => dispatch(decrement(statName))}>-</button>
-      <input type="text" className='level_stats' value={currentVal} readOnly/>
+      {/* <button onClick={() => dispatch(decrement(statName))}>-</button> */}
+      <input type="number" min="1" max={useSelector(getMaxStat)} className='level_stats' value={currentVal} onChange={changeValue}/>
       <span className="nextStep">{nextUpCost}</span>
-      <button onClick={() => dispatch(increment(statName))}>+</button>
+      {/* <button onClick={() => dispatch(increment(statName))}>+</button> */}
 
       <span className='gear_stats'>+1</span>
     </div>

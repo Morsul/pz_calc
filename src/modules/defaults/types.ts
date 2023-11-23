@@ -9,7 +9,12 @@ export interface IBaseStats {
   LUK: number
 }
 
-interface WeaponTypes {
+export interface IStatValue{
+  name: keyof IBaseStats
+  amount: number
+}
+
+interface IWeaponTypes {
   name: WeaponList
   aspd: number
 }
@@ -28,7 +33,7 @@ export interface IClassDescription {
   name: string
   type: string
   jobStatBonus: IBaseStats
-  weaponsASPDMod: WeaponTypes[]
+  weaponsASPDMod: IWeaponTypes[]
   usableAspdPotions: [boolean, boolean, boolean]
 }
 

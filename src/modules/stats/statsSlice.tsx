@@ -1,5 +1,5 @@
 import { type PayloadAction, createSlice } from '@reduxjs/toolkit'
-import { type IStatCap, type ILevelStats, type IBaseStats } from '../defaults/types'
+import { type IStatCap, type ILevelStats, type IBaseStats, IStatValue } from '../defaults/types'
 import { ClassInfo } from '../defaults/classInfo'
 import { leveCap, statCap } from '../defaults/contsts'
 
@@ -35,6 +35,21 @@ export const counterSlice = createSlice({
       state.stats.baseStats[action.payload] = value < 1 ? 1 : value
       state.stats.statPointsLeft = updateStatPointLeft(state.stats.statPointsCap, state.stats.baseStats)
     },
+    setValue: (state, action: PayloadAction<IStatValue>): void=>{
+      const amount = action.payload.amount
+      let newValue = 0;
+      if(amount <= 0){
+        newValue = 1
+      } else if (amount > state.stats.maxStats){
+        newValue = state.stats.maxStats
+      } else {
+        newValue = amount
+      }
+
+      state.stats.baseStats[action.payload.name] = newValue
+
+
+    },
     changeClass: (state, action: PayloadAction<number>): void => {
       state.stats.maxStats = statCap[ClassInfo[action.payload].type as keyof IStatCap] // TODO remove as "as keyof IStatCap"?
       state.stats.levelCap = leveCap[ClassInfo[action.payload].type as keyof IStatCap] // TODO remove as "as keyof IStatCap"?
@@ -47,8 +62,9 @@ export const counterSlice = createSlice({
 })
 
 export const selectStats = (state: any): ILevelStats => state.counter.stats.baseStats // TODO remove any
+export const getMaxStat = (state:any): number =>state.counter.stats.maxStats// TODO remove any
 export const getPointsLeft = (state: any): number => state.counter.stats.statPointsLeft // TODO remove any
-export const { increment, decrement, changeClass } = counterSlice.actions
+export const { increment, decrement, changeClass, setValue } = counterSlice.actions
 export default counterSlice.reducer
 
 const setStatPointCap = (level: number): number => {
