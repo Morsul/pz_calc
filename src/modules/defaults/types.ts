@@ -1,3 +1,5 @@
+import { WeaponList } from "./contsts"
+
 export interface IBaseStats {
   STR: number
   AGI: number
@@ -7,14 +9,10 @@ export interface IBaseStats {
   LUK: number
 }
 
-type WeaponList = 'Bare Hands'|'Book'|'Bow'|'Dagger'|'Huuma Shuriken'|'Instrument'|'Katar'|'Knuckle'|'Mace'|'One Handed Sword'|'One Handed Spear'|'One Handed Axe'|'Two handed Sword'|'Two handed Spear'|'Two Handed Axe'|'One Handed Rod'|'Two Handed Rod'|'Whip'|'Shield'|'L.Dagger'|'L.Sword'|'L.Axe'
-
-interface WeaponTypes
-  {
-    name: WeaponList
-    aspd: number
-  }
-
+interface WeaponTypes {
+  name: WeaponList
+  aspd: number
+}
 
 export interface ILevelStats extends IBaseStats {
   MaxStats: number
@@ -31,6 +29,7 @@ export interface IClassDescription {
   type: string
   jobStatBonus: IBaseStats
   weaponsASPDMod: WeaponTypes[]
+  usableAspdPotions: [boolean, boolean, boolean]
 }
 
 export interface IClassFields {

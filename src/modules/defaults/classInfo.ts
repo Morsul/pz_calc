@@ -15,28 +15,13 @@ export const ClassInfo: IClassDescription[] = [
     weaponsASPDMod: [
       { name: 'Bare Hands', aspd: 156 },
       { name: 'Shield', aspd: -5 },
-      {
-        name: 'Mace',
-        aspd: -3
-      },
-      {
-        name: 'One Handed Rod',
-        aspd: -20
-      },
-      {
-        name: 'Two Handed Rod',
-        aspd: -20
-      },
-      {
-        name: 'Book',
-        aspd: -4
-      },
-      {
-        name: 'Knuckle',
-        aspd: -20
-      }
-
-    ]
+      { name: 'Mace', aspd: -3 },
+      { name: 'One Handed Rod', aspd: -20 },
+      { name: 'Two Handed Rod', aspd: -20 },
+      { name: 'Book', aspd: -4 },
+      { name: 'Knuckle', aspd: -20 }
+    ],
+    usableAspdPotions: [true, false, false]
   },
   {
     name: 'Sniper',
@@ -50,23 +35,12 @@ export const ClassInfo: IClassDescription[] = [
       LUK: 8
     },
     weaponsASPDMod: [
-      {
-        name: 'Bare Hands',
-        aspd: 156
-      },
-      {
-        name: 'Shield',
-        aspd: -9
-      },
-      {
-        name: 'Dagger',
-        aspd: -13
-      },
-      {
-        name: 'Bow',
-        aspd: -7
-      }
-    ]
+      { name: 'Bare Hands', aspd: 156 },
+      { name: 'Shield', aspd: -9 },
+      { name: 'Dagger', aspd: -13 },
+      { name: 'Bow', aspd: -7 }
+    ],
+    usableAspdPotions: [true, true, false]
   },
   {
     name: 'High Wizard',
@@ -85,7 +59,8 @@ export const ClassInfo: IClassDescription[] = [
       { name: 'Dagger', aspd: -4 },
       { name: 'One Handed Rod', aspd: -3 },
       { name: 'Two Handed Rod', aspd: -3 }
-    ]
+    ],
+    usableAspdPotions: [true, true, true] // todo Check if wiz can use bers potion
   },
   {
     name: 'Whitesmith',
@@ -106,7 +81,8 @@ export const ClassInfo: IClassDescription[] = [
       { name: 'One Handed Axe', aspd: -6 },
       { name: 'Two Handed Axe', aspd: -10 },
       { name: 'Mace', aspd: -8 }
-    ]
+    ],
+    usableAspdPotions: [true, true, true]
   },
   {
     name: 'Lord Knight',
@@ -130,7 +106,8 @@ export const ClassInfo: IClassDescription[] = [
       { name: 'Mace', aspd: -5 },
       { name: 'One Handed Spear', aspd: -15 },
       { name: 'Two handed Spear', aspd: -20 }
-    ]
+    ],
+    usableAspdPotions: [true, true, true]
   },
   {
     name: 'Assassin Cross',
@@ -153,7 +130,8 @@ export const ClassInfo: IClassDescription[] = [
       { name: 'L.Dagger', aspd: -10 },
       { name: 'L.Sword', aspd: -12 },
       { name: 'L.Axe', aspd: -12 }
-    ]
+    ],
+    usableAspdPotions: [true, true, false]
   },
   {
     name: 'Champion',
@@ -167,31 +145,14 @@ export const ClassInfo: IClassDescription[] = [
       LUK: 3
     },
     weaponsASPDMod: [
-      {
-        name: 'Bare Hands',
-        aspd: 156
-      },
-      {
-        name: 'Shield',
-        aspd: -3
-      },
-      {
-        name: 'Mace',
-        aspd: -3
-      },
-      {
-        name: 'One Handed Rod',
-        aspd: -20
-      },
-      {
-        name: 'Two Handed Rod',
-        aspd: -18
-      },
-      {
-        name: 'Knuckle',
-        aspd: 0
-      }
-    ]
+      { name: 'Bare Hands', aspd: 156 },
+      { name: 'Shield', aspd: -3 },
+      { name: 'Mace', aspd: -3 },
+      { name: 'One Handed Rod', aspd: -20 },
+      { name: 'Two Handed Rod', aspd: -18 },
+      { name: 'Knuckle', aspd: 0 }
+    ],
+    usableAspdPotions: [true, true, false]
   },
   {
     name: 'Professor',
@@ -211,7 +172,8 @@ export const ClassInfo: IClassDescription[] = [
       { name: 'One Handed Rod', aspd: -10 },
       { name: 'Two Handed Rod', aspd: -10 },
       { name: 'Book', aspd: 2 }
-    ]
+    ],
+    usableAspdPotions: [true, true, false]
   },
   {
     name: 'Clown',
@@ -230,7 +192,8 @@ export const ClassInfo: IClassDescription[] = [
       { name: 'Dagger', aspd: -13 },
       { name: 'Bow', aspd: -8 },
       { name: 'Instrument', aspd: -5 }
-    ]
+    ],
+    usableAspdPotions: [true, false, false]
   },
   {
     name: 'Gypsy',
@@ -249,7 +212,8 @@ export const ClassInfo: IClassDescription[] = [
       { name: 'Dagger', aspd: -13 },
       { name: 'Bow', aspd: -8 },
       { name: 'Whip', aspd: -5 }
-    ]
+    ],
+    usableAspdPotions: [true, false, false]
   },
   {
     name: 'Creator',
@@ -270,7 +234,8 @@ export const ClassInfo: IClassDescription[] = [
       { name: 'One Handed Axe', aspd: -5 },
       { name: 'Two Handed Axe', aspd: -12 },
       { name: 'Mace', aspd: -5 }
-    ]
+    ],
+    usableAspdPotions: [true, true, true]
   },
   {
     name: 'Paladin',
@@ -294,7 +259,8 @@ export const ClassInfo: IClassDescription[] = [
       { name: 'Mace', aspd: -5 },
       { name: 'One Handed Spear', aspd: -13 },
       { name: 'Two handed Spear', aspd: -10 }
-    ]
+    ],
+    usableAspdPotions: [true, true, true]
   },
   {
     name: 'Stalker',
@@ -313,7 +279,8 @@ export const ClassInfo: IClassDescription[] = [
       { name: 'Dagger', aspd: -5 },
       { name: 'One Handed Sword', aspd: -10 },
       { name: 'Bow', aspd: -10 }
-    ]
+    ],
+    usableAspdPotions: [true, true, true]
   },
   {
     name: 'Oboro',
@@ -332,7 +299,8 @@ export const ClassInfo: IClassDescription[] = [
       { name: 'Dagger', aspd: -3 },
       { name: 'Huuma Shuriken', aspd: -15 },
       { name: 'L.Dagger', aspd: -15 }
-    ]
+    ],
+    usableAspdPotions: [true, true, false]
   },
   {
     name: 'Kagerou',
@@ -351,7 +319,8 @@ export const ClassInfo: IClassDescription[] = [
       { name: 'Dagger', aspd: -3 },
       { name: 'Huuma Shuriken', aspd: -15 },
       { name: 'L.Dagger', aspd: -15 }
-    ]
+    ],
+    usableAspdPotions: [true, true, false]
   },
   {
     name: 'Priest',
@@ -365,36 +334,15 @@ export const ClassInfo: IClassDescription[] = [
       LUK: 7
     },
     weaponsASPDMod: [
-      {
-        name: 'Bare Hands',
-        aspd: 156
-      },
-      {
-        name: 'Shield',
-        aspd: -5
-      },
-      {
-        name: 'Mace',
-        aspd: -3
-      },
-      {
-        name: 'One Handed Rod',
-        aspd: -20
-      },
-      {
-        name: 'Two Handed Rod',
-        aspd: -20
-      },
-      {
-        name: 'Book',
-        aspd: -4
-      },
-      {
-        name: 'Knuckle',
-        aspd: -20
-      }
-
-    ]
+      { name: 'Bare Hands', aspd: 156 },
+      { name: 'Shield', aspd: -5 },
+      { name: 'Mace', aspd: -3 },
+      { name: 'One Handed Rod', aspd: -20 },
+      { name: 'Two Handed Rod', aspd: -20 },
+      { name: 'Book', aspd: -4 },
+      { name: 'Knuckle', aspd: -20 }
+    ],
+    usableAspdPotions: [true, false, false]
   },
   {
     name: 'Monk',
@@ -408,31 +356,14 @@ export const ClassInfo: IClassDescription[] = [
       LUK: 3
     },
     weaponsASPDMod: [
-      {
-        name: 'Bare Hands',
-        aspd: 156
-      },
-      {
-        name: 'Shield',
-        aspd: -3
-      },
-      {
-        name: 'Mace',
-        aspd: -3
-      },
-      {
-        name: 'One Handed Rod',
-        aspd: -20
-      },
-      {
-        name: 'Two Handed Rod',
-        aspd: -18
-      },
-      {
-        name: 'Knuckle',
-        aspd: 0
-      }
-    ]
+      { name: 'Bare Hands', aspd: 156 },
+      { name: 'Shield', aspd: -3 },
+      { name: 'Mace', aspd: -3 },
+      { name: 'One Handed Rod', aspd: -20 },
+      { name: 'Two Handed Rod', aspd: -18 },
+      { name: 'Knuckle', aspd: 0 }
+    ],
+    usableAspdPotions: [true, true, false]
   },
   {
     name: 'Hunter',
@@ -446,23 +377,12 @@ export const ClassInfo: IClassDescription[] = [
       LUK: 4
     },
     weaponsASPDMod: [
-      {
-        name: 'Bare Hands',
-        aspd: 156
-      },
-      {
-        name: 'Shield',
-        aspd: -9
-      },
-      {
-        name: 'Dagger',
-        aspd: -13
-      },
-      {
-        name: 'Bow',
-        aspd: -7
-      }
-    ]
+      { name: 'Bare Hands', aspd: 156 },
+      { name: 'Shield', aspd: -9 },
+      { name: 'Dagger', aspd: -13 },
+      { name: 'Bow', aspd: -7 }
+    ],
+    usableAspdPotions: [true, true, false]
   },
   {
     name: 'Bard',
@@ -481,7 +401,8 @@ export const ClassInfo: IClassDescription[] = [
       { name: 'Dagger', aspd: -13 },
       { name: 'Bow', aspd: -8 },
       { name: 'Instrument', aspd: -5 }
-    ]
+    ],
+    usableAspdPotions: [true, false, false]
   },
   {
     name: 'Dancer',
@@ -500,7 +421,8 @@ export const ClassInfo: IClassDescription[] = [
       { name: 'Dagger', aspd: -13 },
       { name: 'Bow', aspd: -8 },
       { name: 'Whip', aspd: -5 }
-    ]
+    ],
+    usableAspdPotions: [true, false, false]
   },
   {
     name: 'Wizard',
@@ -519,7 +441,8 @@ export const ClassInfo: IClassDescription[] = [
       { name: 'Dagger', aspd: -4 },
       { name: 'One Handed Rod', aspd: -3 },
       { name: 'Two Handed Rod', aspd: -3 }
-    ]
+    ],
+    usableAspdPotions: [true, true, true]
   },
   {
     name: 'Sage',
@@ -539,7 +462,8 @@ export const ClassInfo: IClassDescription[] = [
       { name: 'One Handed Rod', aspd: -10 },
       { name: 'Two Handed Rod', aspd: -10 },
       { name: 'Book', aspd: 2 }
-    ]
+    ],
+    usableAspdPotions: [true, true, false]
   },
   {
     name: 'Blacksmith',
@@ -560,7 +484,8 @@ export const ClassInfo: IClassDescription[] = [
       { name: 'One Handed Axe', aspd: -6 },
       { name: 'Two Handed Axe', aspd: -10 },
       { name: 'Mace', aspd: -8 }
-    ]
+    ],
+    usableAspdPotions: [true, true, true]
   },
   {
     name: 'Alchemist',
@@ -581,7 +506,8 @@ export const ClassInfo: IClassDescription[] = [
       { name: 'One Handed Axe', aspd: -5 },
       { name: 'Two Handed Axe', aspd: -12 },
       { name: 'Mace', aspd: -5 }
-    ]
+    ],
+    usableAspdPotions: [true, true, true]
   },
   {
     name: 'Knight',
@@ -605,7 +531,8 @@ export const ClassInfo: IClassDescription[] = [
       { name: 'Mace', aspd: -5 },
       { name: 'One Handed Spear', aspd: -15 },
       { name: 'Two handed Spear', aspd: -20 }
-    ]
+    ],
+    usableAspdPotions: [true, true, true]
   },
   {
     name: 'Crusader',
@@ -629,7 +556,8 @@ export const ClassInfo: IClassDescription[] = [
       { name: 'Mace', aspd: -5 },
       { name: 'One Handed Spear', aspd: -13 },
       { name: 'Two handed Spear', aspd: -10 }
-    ]
+    ],
+    usableAspdPotions: [true, true, true]
   },
   {
     name: 'Assassin',
@@ -652,7 +580,8 @@ export const ClassInfo: IClassDescription[] = [
       { name: 'L.Dagger', aspd: -10 },
       { name: 'L.Sword', aspd: -12 },
       { name: 'L.Axe', aspd: -12 }
-    ]
+    ],
+    usableAspdPotions: [true, true, false]
   },
   {
     name: 'Rogue',
@@ -671,7 +600,8 @@ export const ClassInfo: IClassDescription[] = [
       { name: 'Dagger', aspd: -5 },
       { name: 'One Handed Sword', aspd: -10 },
       { name: 'Bow', aspd: -10 }
-    ]
+    ],
+    usableAspdPotions: [true, true, true]
   },
   {
     name: 'Ninja',
@@ -689,6 +619,7 @@ export const ClassInfo: IClassDescription[] = [
       { name: 'Shield', aspd: -6 },
       { name: 'Dagger', aspd: -3 },
       { name: 'Huuma Shuriken', aspd: -15 }
-    ]
+    ],
+    usableAspdPotions: [true, true, false]
   }
 ]
