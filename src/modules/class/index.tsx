@@ -11,12 +11,8 @@ export const ClassSelector = (): ReactElement => {
 
   const dispatch = useDispatch()
 
-  const changeHandler = (e: number): void => {
-    dispatch(changeClass(e))
-  }
-
   return (
-    <select onChange={e => { changeHandler(Number(e.target.value)) }} >
+    <select onChange={e => dispatch(changeClass((Number(e.target.value))))} >
       {
        ClassInfo.map((e, i) =>
           <option value={i} key={e.name}>

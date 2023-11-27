@@ -1,5 +1,10 @@
 import { WeaponList } from "./contsts"
 
+interface IWeaponTypes {
+  name: WeaponList
+  aspd: number
+}
+
 export interface IBaseStats {
   STR: number
   AGI: number
@@ -12,11 +17,6 @@ export interface IBaseStats {
 export interface IStatValue{
   name: keyof IBaseStats
   amount: number
-}
-
-interface IWeaponTypes {
-  name: WeaponList
-  aspd: number
 }
 
 export interface ILevelStats extends IBaseStats {
