@@ -1,6 +1,5 @@
-import { type IClassDescription } from './types'
 
-export const ClassInfo: IClassDescription[] = [
+const ClassInfo = [
   {
     name: 'High Priest',
     type: 'transcendent',

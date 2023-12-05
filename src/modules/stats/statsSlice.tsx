@@ -1,5 +1,5 @@
 import { type PayloadAction, createSlice } from '@reduxjs/toolkit'
-import { type IStatCap, type ILevelStats, type IBaseStats, IStatValue } from '../defaults/types'
+import { type IStatCap, type ILevelStats, type IBaseStats, IStatValue, IBaseInfo } from '../defaults/types'
 import { ClassInfo } from '../defaults/classInfo'
 import { leveCap, statCap } from '../defaults/contsts'
 
@@ -27,14 +27,21 @@ const initialState = {
     levelCap: 0,
     classId: 0,
     weapons: {
-      right: 'dagger',
-      left: null
+      right: 'Mace',
+      left: 'Shield'
     },
-    aspd: 0,
-    gear:{
-      flatAspd: 0,
-      aspdBonus: 0.1
+    aspd: {
+      value: 0,
+      gearAspdBonus:{
+        flatAspd: 1, 
+        aspdBonus: 0.1, //
+        potionBonus: 6
+      },
+      buffAspdBonus:{
+        aspdBonus: 0
+      }
     }
+
   }
 }
 
@@ -84,7 +91,7 @@ export const counterSlice = createSlice({
       
       ClassInfo[classId].weaponsASPDMod.find(e=> e.name === stats.weapons.right);
       Math.sqrt(Math.pow(stats.baseStats.AGI+stats.jobStats.AGI,2)/2 + Math.pow(stats.baseStats.DEX+stats.jobStats.DEX,2))/4
-      // stats.aspd = updateAspd({})
+      stats.aspd.value = updateAspd(state.stats)
     },
 
   }
@@ -127,7 +134,16 @@ const updateStatPointLeft = (cap: number, bstats: IBaseStats): number => {
   return (cap - count)
 }
 
-const updateAspd = ({}):number =>{
-  let a = 0
-  return a
+const updateAspd = (stats: IBaseInfo):number =>{
+  const lhAspd = getWeaponPenalty(stats.weapons.left, stats.classId)
+  const rhAspd = getWeaponPenalty(stats.weapons.right, stats.classId)
+  const wbPenalty = ClassInfo[stats.classId].weaponsASPDMod[0].aspd + lhAspd + rhAspd
+  const statBonus = Math.sqrt((stats.baseStats.AGI + stats.jobStats.AGI)**2 + (stats.baseStats.DEX + stats.jobStats.DEX)**2)/4  // TODO add ranged and mele weapons diff formulas 
+  console.log(wbPenalty )
+  let aspd1 = Math.floor(1)
+  return aspd1
+}
+
+const getWeaponPenalty = (wName: string | null, classId: number) => {
+  return wName === null ? 0 : ClassInfo[classId].weaponsASPDMod.find(e=>e.name === wName)?.aspd ?? 0
 }

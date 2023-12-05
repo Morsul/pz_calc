@@ -5,6 +5,23 @@ interface IWeaponTypes {
   aspd: number
 }
 
+interface ICharWeapons{ // TODO string -> WeaponList
+  right: string
+  left: null | string
+}
+
+interface IAspdInfo{
+  value: number
+  gearAspdBonus:{
+    flatAspd: number,
+    aspdBonus: number,
+    potionBonus: number
+  }
+  buffAspdBonus:{
+    aspdBonus: number
+  }
+}
+
 export interface IBaseStats {
   STR: number
   AGI: number
@@ -45,4 +62,16 @@ export interface IClassFields {
 export interface IStatCap {
   classic: number
   transcendent: number
+}
+
+export interface IBaseInfo{
+  baseStats: IBaseStats
+  jobStats: IBaseStats
+  maxStats: number
+  statPointsCap: number
+  statPointsLeft: number
+  levelCap: number
+  classId: number
+  weapons: ICharWeapons
+  aspd: IAspdInfo
 }
