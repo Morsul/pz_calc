@@ -7,10 +7,10 @@ const initialState = {
   stats: {
     baseStats: {
       STR: 1,
-      AGI: 1,
+      AGI: 88,
       VIT: 1,
       INT: 1,
-      DEX: 1,
+      DEX: 54,
       LUK: 1
     },
     jobStats:{
@@ -25,20 +25,21 @@ const initialState = {
     statPointsCap: 0,
     statPointsLeft: 0,
     levelCap: 0,
-    classId: 0,
+    classId: 24,
     weapons: {
-      right: 'Mace',
-      left: 'Shield'
+      right: 'Two handed Sword',
+      left: null
     },
     aspd: {
       value: 0,
       gearAspdBonus:{
         flatAspd: 1, 
         aspdBonus: 0.1, //
-        potionBonus: 6
+        potionBonus: 9
       },
       buffAspdBonus:{
-        aspdBonus: 0
+        baseAspd: [0],
+        pctAspd: [0]
       }
     }
 
@@ -89,8 +90,6 @@ export const counterSlice = createSlice({
 
       stats.jobStats = ClassInfo[classId].jobStatBonus
       
-      ClassInfo[classId].weaponsASPDMod.find(e=> e.name === stats.weapons.right);
-      Math.sqrt(Math.pow(stats.baseStats.AGI+stats.jobStats.AGI,2)/2 + Math.pow(stats.baseStats.DEX+stats.jobStats.DEX,2))/4
       stats.aspd.value = updateAspd(state.stats)
     },
 
@@ -138,12 +137,21 @@ const updateAspd = (stats: IBaseInfo):number =>{
   const lhAspd = getWeaponPenalty(stats.weapons.left, stats.classId)
   const rhAspd = getWeaponPenalty(stats.weapons.right, stats.classId)
   const wbPenalty = ClassInfo[stats.classId].weaponsASPDMod[0].aspd + lhAspd + rhAspd
-  const statBonus = Math.sqrt((stats.baseStats.AGI + stats.jobStats.AGI)**2 + (stats.baseStats.DEX + stats.jobStats.DEX)**2)/4  // TODO add ranged and mele weapons diff formulas 
-  console.log(wbPenalty )
+  const statBonus = Math.sqrt(Math.pow(stats.baseStats.DEX+stats.jobStats.DEX,2)/5 + Math.pow(stats.baseStats.AGI+stats.jobStats.AGI,2)/2)/4 // TODO add ranged and mele weapons diff formulas 
+  const aspOtherBonus = (getStatSumm(stats.aspd.buffAspdBonus.baseAspd) + stats.aspd.gearAspdBonus.potionBonus)* (stats.baseStats.AGI+stats.jobStats.AGI) / 200
+
+  const ASPD1 = Math.floor(wbPenalty + statBonus + aspOtherBonus)
+  const ASPD2 = Math.floor((195-ASPD1) * (getStatSumm(stats.aspd.buffAspdBonus.pctAspd))) + ASPD1
+  
+  console.log(ASPD1, stats.classId)
   let aspd1 = Math.floor(1)
   return aspd1
 }
 
 const getWeaponPenalty = (wName: string | null, classId: number) => {
   return wName === null ? 0 : ClassInfo[classId].weaponsASPDMod.find(e=>e.name === wName)?.aspd ?? 0
+}
+
+const getStatSumm = (arr: number[]): number =>{
+  return arr.reduce((acc , curVal) =>{return acc+ curVal}, 0)
 }

@@ -6,7 +6,7 @@ import { ClassInfo } from '../defaults/classInfo'
 
 export const ClassSelector = (): ReactElement => {
   useEffect(() => {
-    dispatch(changeClass(0))
+    dispatch(changeClass(24))
   }, [])
 
   const dispatch = useDispatch()

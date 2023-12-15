@@ -18,7 +18,8 @@ interface IAspdInfo{
     potionBonus: number
   }
   buffAspdBonus:{
-    aspdBonus: number
+    baseAspd: number[]
+    pctAspd: number[]
   }
 }
 

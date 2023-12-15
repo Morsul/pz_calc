@@ -1,5 +1,4 @@
-
-const ClassInfo = [
+export const ClassInfo = [
   {
     name: 'High Priest',
     type: 'transcendent',
@@ -106,7 +105,10 @@ const ClassInfo = [
       { name: 'One Handed Spear', aspd: -15 },
       { name: 'Two handed Spear', aspd: -20 }
     ],
-    usableAspdPotions: [true, true, true]
+    usableAspdPotions: [true, true, true],
+    selfBuffList: [
+
+    ]
   },
   {
     name: 'Assassin Cross',
