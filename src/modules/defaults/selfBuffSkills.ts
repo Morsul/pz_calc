@@ -1,4 +1,6 @@
-export const SelfBuffSkills = [
+import { ISafeBuffSkills } from "./types";
+
+export const SelfBuffSkills: ISafeBuffSkills[] = [
   {
     description: {
       id: 0,
@@ -102,6 +104,82 @@ export const SelfBuffSkills = [
     getStats: {
       baseSTR: (x: number): number => x,
       baseATK: (x: number): number => 4
+    }
+  },
+  {
+    description: {
+      id: 9,
+      type: 'select',
+      name: 'Musical Lesson',
+      levels: [0, 10]
+    },
+    getStats: {
+      pctAspd: (x: number): number => x,
+      baseATK: (x: number): number => x * 3,
+      maxSPpct: (x: number): number => x
+    }
+  },
+  {
+    description: {
+      id: 10,
+      type: 'select',
+      name: 'Dancing Lesson',
+      levels: [0, 10]
+    },
+    getStats: {
+      crit: (x: number): number => x,
+      baseATK: (x: number): number => x * 3,
+      maxSPpct: (x: number): number => x
+    }
+  },
+  {
+    description: {
+      id: 11,
+      type: 'select',
+      name: 'Advanced Book',
+      levels: [0, 10]
+    },
+    getStats: {
+      baseATK: (x: number): number => x * 4,
+      maxSPpct: (x: number): number => x / 2
+    }
+  },
+  {
+    description: {
+      id: 12,
+      type: 'select',
+      name: 'Dragonology',
+      levels: [0, 5]
+    },
+    getStats: {
+      baseATKpct: (x: number): number => x * 3,
+      baseMATKpct: (x: number): number => x * 3,
+      baseINT: (x: number): number => x
+    }
+  },
+  {
+    description: {
+      id: 13,
+      type: 'select',
+      name: 'Spear Quicken',
+      levels: [0, 10]
+    },
+    getStats: {
+      crit: (x: number): number => x * 3,
+      flee: (x: number): number => x * 2,
+      baseAspd: (x: number): number => x > 0 ? 7 : 0,
+      pctAspd: (x: number): number => x > 0 ? 0.1 : 0
+    }
+  },
+  {
+    description: {
+      id: 14,
+      type: 'select',
+      name: 'Plagiarism (Intimidate)',
+      levels: [0, 10]
+    },
+    getStats: {
+      pctAspd: (x: number): number => x
     }
   }
 ]

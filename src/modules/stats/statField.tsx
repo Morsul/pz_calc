@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { setValue, getMaxStat, getJobStats } from './statsSlice'
+import { setValue, getMaxStat, getJobStats } from '../charSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { type IStatFields } from '../defaults/types'
 
@@ -31,9 +31,10 @@ export const StatField = memo(function StatField ({ statName, currentVal }: ISta
 
   return (
     <div className={'manual_stat' + statName}>
+      <span className="stat_name">{statName}</span>
       {/* <button onClick={() => dispatch(decrement(statName))}>-</button> */}
       <input type="number" min="1" max={useSelector(getMaxStat)} className='level_stats' value={currentVal} onChange={e => dispatch(setValue({ name: statName, amount: Number(e.target.value) }))}/>
-      <span className="nextStep">{nextUpCost}</span>
+      <span className="next_step">{nextUpCost}</span>
       {/* <button onClick={() => dispatch(increment(statName))}>+</button> */}
 
       <span className='gear_stats'>{'   +' + useSelector(getJobStats)[statName]}</span>

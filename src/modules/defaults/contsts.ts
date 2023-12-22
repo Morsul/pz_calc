@@ -6,11 +6,12 @@ export const leveCap = {
   classic: 99,
   transcendent: 120
 }
-export const aspdPotionList = [
-  { name: 'Concentration potion', bonus: 4 },
-  { name: 'Concentration potion', bonus: 6 },
-  { name: 'Berserk  potion', bonus: 9 }
-]
+export const defaultPStats = {
+  hit: 175,
+  crit: 0,
+  flee: 100,
+  pDodge: 0
+}
 export const ClassList = [
   'HighPriest',
   'Sniper',

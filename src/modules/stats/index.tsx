@@ -2,7 +2,7 @@ import React from 'react'
 import { type ReactElement } from 'react'
 import { PrimaryStats } from '../defaults/stats'
 import { StatField } from './statField'
-import { selectStats } from './statsSlice'
+import { selectStats } from '../charSlice'
 import { useSelector } from 'react-redux'
 
 export const StatManualCalc = (): ReactElement[] => { // TODO: fully rerenders on 1 stat change ?
