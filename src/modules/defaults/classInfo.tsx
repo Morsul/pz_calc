@@ -1,4 +1,4 @@
-import { IClassDescription } from "./types";
+import { type IClassDescription } from './types'
 
 export const ClassInfo: IClassDescription[] = [
   {
@@ -24,7 +24,7 @@ export const ClassInfo: IClassDescription[] = [
       left: [{ name: 'Shield', aspd: -5 }]
     },
     usableAspdPotions: [true, true, false, false],
-    selfBuffList: null
+    selfBuffList: undefined
   },
   {
     name: 'Sniper',
@@ -69,7 +69,7 @@ export const ClassInfo: IClassDescription[] = [
       left: [{ name: 'Shield', aspd: -8 }]
     },
     usableAspdPotions: [true, true, true, true],
-    selfBuffList: null
+    selfBuffList: undefined
   },
   {
     name: 'Whitesmith',
@@ -122,7 +122,7 @@ export const ClassInfo: IClassDescription[] = [
       left: [{ name: 'Shield', aspd: -5 }]
     },
     usableAspdPotions: [true, true, true, true],
-    selfBuffList: [0, 4, 5, 7]
+    selfBuffList: [0, 4, 5]
   },
   {
     name: 'Assassin Cross',
@@ -177,7 +177,7 @@ export const ClassInfo: IClassDescription[] = [
       ]
     },
     usableAspdPotions: [true, true, true, false],
-    selfBuffList: null
+    selfBuffList: undefined
   },
   {
     name: 'Professor',
@@ -225,7 +225,7 @@ export const ClassInfo: IClassDescription[] = [
       ]
     },
     usableAspdPotions: [true, true, false, false],
-    selfBuffList: [9]
+    selfBuffList: [1, 2, 3, 9]
   },
   {
     name: 'Gypsy',
@@ -248,7 +248,7 @@ export const ClassInfo: IClassDescription[] = [
       left: [{ name: 'Shield', aspd: -5 }]
     },
     usableAspdPotions: [true, true, false, false],
-    selfBuffList: [10]
+    selfBuffList: [1, 2, 3, 10]
   },
   {
     name: 'Creator',
@@ -273,7 +273,7 @@ export const ClassInfo: IClassDescription[] = [
       left: [{ name: 'Shield', aspd: -4 }]
     },
     usableAspdPotions: [true, true, true, true],
-    selfBuffList: null
+    selfBuffList: undefined
   },
   {
     name: 'Paladin',
@@ -349,7 +349,7 @@ export const ClassInfo: IClassDescription[] = [
       ]
     },
     usableAspdPotions: [true, true, true, false],
-    selfBuffList: null
+    selfBuffList: undefined
   },
   {
     name: 'Kagerou',
@@ -374,7 +374,7 @@ export const ClassInfo: IClassDescription[] = [
       ]
     },
     usableAspdPotions: [true, true, true, false],
-    selfBuffList: null
+    selfBuffList: undefined
   },
   {
     name: 'Priest',
@@ -399,7 +399,7 @@ export const ClassInfo: IClassDescription[] = [
       left: [{ name: 'Shield', aspd: -5 }]
     },
     usableAspdPotions: [true, true, false, false],
-    selfBuffList: null
+    selfBuffList: undefined
   },
   {
     name: 'Monk',
@@ -425,7 +425,7 @@ export const ClassInfo: IClassDescription[] = [
       ]
     },
     usableAspdPotions: [true, true, true, false],
-    selfBuffList: null
+    selfBuffList: undefined
   },
   {
     name: 'Hunter',
@@ -471,7 +471,7 @@ export const ClassInfo: IClassDescription[] = [
       ]
     },
     usableAspdPotions: [true, true, false, false],
-    selfBuffList: [9]
+    selfBuffList: [1, 2, 3, 9]
   },
   {
     name: 'Dancer',
@@ -494,7 +494,7 @@ export const ClassInfo: IClassDescription[] = [
       left: [{ name: 'Shield', aspd: -5 }]
     },
     usableAspdPotions: [true, true, false, false],
-    selfBuffList: [10]
+    selfBuffList: [1, 2, 3, 10]
   },
   {
     name: 'Wizard',
@@ -517,7 +517,7 @@ export const ClassInfo: IClassDescription[] = [
       left: [{ name: 'Shield', aspd: -8 }]
     },
     usableAspdPotions: [true, true, true, true],
-    selfBuffList: null
+    selfBuffList: undefined
   },
   {
     name: 'Sage',
@@ -591,7 +591,7 @@ export const ClassInfo: IClassDescription[] = [
       left: [{ name: 'Shield', aspd: -4 }]
     },
     usableAspdPotions: [true, true, true, true],
-    selfBuffList: null
+    selfBuffList: undefined
   },
   {
     name: 'Knight',
@@ -619,7 +619,7 @@ export const ClassInfo: IClassDescription[] = [
       left: [{ name: 'Shield', aspd: -5 }]
     },
     usableAspdPotions: [true, true, true, true],
-    selfBuffList: [0, 4, 5, 7]
+    selfBuffList: [0, 4, 5]
   },
   {
     name: 'Crusader',
@@ -723,9 +723,6 @@ export const ClassInfo: IClassDescription[] = [
       ]
     },
     usableAspdPotions: [true, true, true, false],
-    selfBuffList: null
+    selfBuffList: undefined
   }
 ]
-
-
-

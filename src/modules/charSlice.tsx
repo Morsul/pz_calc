@@ -1,8 +1,9 @@
 import { type PayloadAction, createSlice } from '@reduxjs/toolkit'
-import { type IStatCap, type ILevelStats, type IBaseStats, type IStatValue, type IBaseInfo, type ISumPStats, type IWeaponTypes, type ICharWeapons } from './defaults/types'
+import { type IStatCap, type ILevelStats, type IBaseStats, type IStatValue, type IBaseInfo, type ISumPStats, type IWeaponTypes, type ICharWeapons, type ISkillBuffStats } from './defaults/types'
 import { ClassInfo } from './defaults/classInfo'
 import { defaultPStats, leveCap, statCap } from './defaults/contsts'
 import { aspdPotion } from './defaults/consumables'
+import { SelfBuffSkillsList, defaultSelfBuffStats } from './defaults/selfBuffSkills'
 
 const initialState = {
   stats: {
@@ -22,19 +23,7 @@ const initialState = {
       DEX: 0,
       LUK: 0
     },
-    skillBuffStats: {
-      STR: 0,
-      AGI: 0,
-      VIT: 0,
-      INT: 0,
-      DEX: 0,
-      LUK: 0,
-      crit: 0,
-      hit: 0,
-      flee: 0,
-      baseAspd: 0,
-      pctAspd: 0
-    },
+    skillBuffStats: { ...defaultSelfBuffStats },
     sumStats: {
       crit: defaultPStats.crit,
       hit: defaultPStats.hit,
@@ -61,7 +50,8 @@ const initialState = {
     consumables: {
       aspdPotion: 0
     },
-    skillsUsedOnChar: null
+    skillsUsedOnChar: null,
+    selfBuffSkills: [[-1, -1]] // TODO default state undefined || null?
   }
 }
 
@@ -101,7 +91,7 @@ export const counterSlice = createSlice({
       stats.sumStats.crit = updateCrit(state.stats)
       stats.sumStats.flee = updateFlee(state.stats)
       stats.sumStats.hit = updateHit(state.stats)
-      console.log(stats.aspd.value)
+      // console.log(stats.aspd.value)
     },
     changeAspdPotion: (state, action: PayloadAction<number>): void => {
       state.stats.consumables.aspdPotion = action.payload
@@ -118,7 +108,7 @@ export const counterSlice = createSlice({
       stats.statPointsLeft = updateStatPointLeft(s, stats.baseStats)
       stats.consumables.aspdPotion = 0
       stats.skillsUsedOnChar = null // TODO should add all avalaible skills
-
+      stats.selfBuffSkills = updateSelfSkillList(classId)
       stats.jobStats = ClassInfo[classId].jobStatBonus
 
       stats.aspd.value = updateAspd(state.stats)
@@ -126,12 +116,15 @@ export const counterSlice = createSlice({
       stats.sumStats.flee = updateFlee(state.stats)
       stats.sumStats.hit = updateHit(state.stats)
     },
+    changeSelfBuffSkillLVL: (state, action: PayloadAction<number>): void => {
+
+    },
     changeWeapon: (state, action: PayloadAction<[keyof ICharWeapons, string]>): void => {
       const stats: IBaseInfo = state.stats
-      console.log(stats.weapons[action.payload[0]])
+      // console.log(stats.weapons[action.payload[0]])
       stats.weapons[action.payload[0]] = action.payload[1]
       state.stats.aspd.value = updateAspd(state.stats)
-      console.log(stats.weapons[action.payload[0]], state.stats.aspd.value)
+      // console.log(stats.weapons[action.payload[0]], state.stats.aspd.value)
     }
 
   }
@@ -221,3 +214,25 @@ const updateCrit = (stats: IBaseInfo): number => {
   crit += stats.skillBuffStats.crit
   return crit
 }
+
+const updateSelfSkillList = (classId: number): Array<[number, number]> => {
+  return ClassInfo[classId].selfBuffList?.map(e => [e, 1]) ?? [[-1, -1]]
+}
+
+const changeSelfSkillLVL = (skillId: number, level: number, sbs: Array<[number, number]>): Array<[number, number]> => {
+  return sbs.map(e => e[0] === skillId ? [e[0], level] : e)
+}
+const updateSelfBuffSkillStats: =>(stats: IBaseInfo): void => {
+  // const stats = state.stats
+  if (stats.selfBuffSkills[0][0] === -1) return
+
+  stats.selfBuffSkills.forEach(skillInfo => {
+    const skillStats: ISkillBuffStats | undefined = SelfBuffSkillsList.find(e => e.description.id === skillInfo[0])?.getSkillStats(stats.baseStats, skillInfo[1])
+
+    if (skillStats != null) {
+      for (const [key] of Object.entries(defaultSelfBuffStats)) {
+        stats.skillBuffStats[key as keyof ISkillBuffStats] += skillStats[key as keyof ISkillBuffStats]
+      }
+    }
+  })
+},

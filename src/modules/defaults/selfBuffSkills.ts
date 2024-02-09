@@ -1,6 +1,25 @@
-import { ISafeBuffSkills } from "./types";
+import { type ISkillBuffStats, type ISelfBuffSkills } from './types'
 
-export const SelfBuffSkills: ISafeBuffSkills[] = [
+export const defaultSelfBuffStats: ISkillBuffStats = {
+  STR: 0,
+  AGI: 0,
+  VIT: 0,
+  INT: 0,
+  DEX: 0,
+  LUK: 0,
+  crit: 0,
+  hit: 0,
+  flee: 0,
+  baseAspd: 0,
+  pctAspd: 0,
+  weaponATK: 0,
+  baseATKpct: 0,
+  flatAtk: 0,
+  maxSPpct: 0,
+  flatMatk: 0
+}
+
+export const SelfBuffSkillsList: ISelfBuffSkills[] = [
   {
     description: {
       id: 0,
@@ -8,13 +27,15 @@ export const SelfBuffSkills: ISafeBuffSkills[] = [
       name: 'Two-hand Quicken',
       levels: [0, 10]
     },
-    getStats: {
-      hit: (x: number): number => x * 2,
-      crit: (x: number): number => x > 0 ? x + 2 : 0,
-      pctAspd: (x: number): number => x > 0 ? 0.1 : 0,
-      baseAspd: (x: number): number => x > 0 ? 7 : 0
+    getSkillStats: (a, x) => {
+      if (x === 0) { return defaultSelfBuffStats }
+      const rStats = { ...defaultSelfBuffStats }
+      rStats.hit = x * 2
+      rStats.crit = x + 2
+      rStats.pctAspd = 0.1
+      rStats.baseAspd = 7
+      return rStats
     }
-
   },
   {
     description: {
@@ -23,9 +44,12 @@ export const SelfBuffSkills: ISafeBuffSkills[] = [
       name: 'Improve Concentration',
       levels: [0, 10]
     },
-    getStats: {
-      baseAGI: (x: number, stat: number): number => x > 0 ? stat * (x + 2) : 0,
-      baseDEX: (x: number, stat: number): number => x > 0 ? stat * (x + 2) : 0
+    getSkillStats: (a, x) => {
+      if (x === 0) { return defaultSelfBuffStats }
+      const rStats = { ...defaultSelfBuffStats }
+      rStats.AGI = a.AGI * (x + 2)
+      rStats.DEX = a.DEX * (x + 2)
+      return rStats
     }
   },
   {
@@ -35,8 +59,11 @@ export const SelfBuffSkills: ISafeBuffSkills[] = [
       name: "Owl's Eye",
       levels: [0, 10]
     },
-    getStats: {
-      baseDEX: (x: number): number => x
+    getSkillStats: (a, x) => {
+      if (x === 0) { return defaultSelfBuffStats }
+      const rStats = { ...defaultSelfBuffStats }
+      rStats.DEX = x
+      return rStats
     }
   },
   {
@@ -46,8 +73,11 @@ export const SelfBuffSkills: ISafeBuffSkills[] = [
       name: "Vulture's Eye",
       levels: [0, 10]
     },
-    getStats: {
-      hit: (x: number, isProperWeapon: boolean): number => isProperWeapon ? x : 0
+    getSkillStats: (a, x) => {
+      if (x === 0) { return defaultSelfBuffStats }
+      const rStats = { ...defaultSelfBuffStats }
+      rStats.hit = x
+      return rStats
     }
   },
   {
@@ -57,8 +87,11 @@ export const SelfBuffSkills: ISafeBuffSkills[] = [
       name: 'Sword Mastery',
       levels: [0, 10]
     },
-    getStats: {
-      weaponATK: (x: number, isProperWeapon: boolean): number => isProperWeapon ? x * 4 : 0
+    getSkillStats: (a, x) => {
+      if (x === 0) { return defaultSelfBuffStats }
+      const rStats = { ...defaultSelfBuffStats }
+      rStats.weaponATK = x * 4
+      return rStats
     }
   },
   {
@@ -68,8 +101,11 @@ export const SelfBuffSkills: ISafeBuffSkills[] = [
       name: 'Two-Handed Sword Mastery',
       levels: [0, 10]
     },
-    getStats: {
-      weaponATK: (x: number, isProperWeapon: boolean): number => isProperWeapon ? x * 4 : 0
+    getSkillStats: (a, x) => {
+      if (x === 0) { return defaultSelfBuffStats }
+      const rStats = { ...defaultSelfBuffStats }
+      rStats.weaponATK = x * 4
+      return rStats
     }
   },
   {
@@ -79,8 +115,11 @@ export const SelfBuffSkills: ISafeBuffSkills[] = [
       name: 'Double Attack',
       levels: [0, 10]
     },
-    getStats: {
-      hit: (x: number): number => x
+    getSkillStats: (a, x) => {
+      if (x === 0) { return defaultSelfBuffStats }
+      const rStats = { ...defaultSelfBuffStats }
+      rStats.hit = 4
+      return rStats
     }
   },
   {
@@ -90,8 +129,11 @@ export const SelfBuffSkills: ISafeBuffSkills[] = [
       name: 'Power Thrust',
       levels: [0, 5]
     },
-    getStats: {
-      baseATKpct: (x: number): number => x * 5
+    getSkillStats: (a, x) => {
+      if (x === 0) { return defaultSelfBuffStats }
+      const rStats = { ...defaultSelfBuffStats }
+      rStats.baseATKpct = x * 5
+      return rStats
     }
   },
   {
@@ -101,9 +143,12 @@ export const SelfBuffSkills: ISafeBuffSkills[] = [
       name: 'Hilt Binding',
       levels: [0, 1]
     },
-    getStats: {
-      baseSTR: (x: number): number => x,
-      baseATK: (x: number): number => 4
+    getSkillStats: (a, x) => {
+      if (x === 0) { return defaultSelfBuffStats }
+      const rStats = { ...defaultSelfBuffStats }
+      rStats.STR = x
+      rStats.flatAtk = 4
+      return rStats
     }
   },
   {
@@ -113,10 +158,13 @@ export const SelfBuffSkills: ISafeBuffSkills[] = [
       name: 'Musical Lesson',
       levels: [0, 10]
     },
-    getStats: {
-      pctAspd: (x: number): number => x,
-      baseATK: (x: number): number => x * 3,
-      maxSPpct: (x: number): number => x
+    getSkillStats: (a, x) => {
+      if (x === 0) { return defaultSelfBuffStats }
+      const rStats = { ...defaultSelfBuffStats }
+      rStats.weaponATK = x * 5 - (x > 5 ? 5 : x - 1)
+      rStats.pctAspd = x < 6 ? x + 1 : x + 1 + (x - 6)
+      rStats.maxSPpct = x < 6 ? x + 1 : x + 1 + (x - 6)
+      return rStats
     }
   },
   {
@@ -126,10 +174,13 @@ export const SelfBuffSkills: ISafeBuffSkills[] = [
       name: 'Dancing Lesson',
       levels: [0, 10]
     },
-    getStats: {
-      crit: (x: number): number => x,
-      baseATK: (x: number): number => x * 3,
-      maxSPpct: (x: number): number => x
+    getSkillStats: (a, x) => {
+      if (x === 0) { return defaultSelfBuffStats }
+      const rStats = { ...defaultSelfBuffStats }
+      rStats.weaponATK = x * 5 - (x > 5 ? 5 : x - 1)
+      rStats.crit = x < 6 ? x + 1 : x + 1 + (x - 6)
+      rStats.maxSPpct = x < 6 ? x + 1 : x + 1 + (x - 6)
+      return rStats
     }
   },
   {
@@ -139,9 +190,12 @@ export const SelfBuffSkills: ISafeBuffSkills[] = [
       name: 'Advanced Book',
       levels: [0, 10]
     },
-    getStats: {
-      baseATK: (x: number): number => x * 4,
-      maxSPpct: (x: number): number => x / 2
+    getSkillStats: (a, x) => {
+      if (x === 0) { return defaultSelfBuffStats }
+      const rStats = { ...defaultSelfBuffStats }
+      rStats.weaponATK = x * 4
+      rStats.pctAspd = x / 2
+      return rStats
     }
   },
   {
@@ -151,10 +205,13 @@ export const SelfBuffSkills: ISafeBuffSkills[] = [
       name: 'Dragonology',
       levels: [0, 5]
     },
-    getStats: {
-      baseATKpct: (x: number): number => x * 3,
-      baseMATKpct: (x: number): number => x * 3,
-      baseINT: (x: number): number => x
+    getSkillStats: (a, x) => {
+      if (x === 0) { return defaultSelfBuffStats }
+      const rStats = { ...defaultSelfBuffStats }
+      rStats.INT = a.INT * ((x * 3) / 100)
+      rStats.pctAspd = x / 2
+      rStats.flatMatk = x
+      return rStats
     }
   },
   {
@@ -164,11 +221,14 @@ export const SelfBuffSkills: ISafeBuffSkills[] = [
       name: 'Spear Quicken',
       levels: [0, 10]
     },
-    getStats: {
-      crit: (x: number): number => x * 3,
-      flee: (x: number): number => x * 2,
-      baseAspd: (x: number): number => x > 0 ? 7 : 0,
-      pctAspd: (x: number): number => x > 0 ? 0.1 : 0
+    getSkillStats: (a, x) => {
+      if (x === 0) { return defaultSelfBuffStats }
+      const rStats = { ...defaultSelfBuffStats }
+      rStats.crit = x * 3
+      rStats.flee = (x * 2) / 2
+      rStats.baseAspd = 7
+      rStats.pctAspd = 0.1
+      return rStats
     }
   },
   {
@@ -178,8 +238,11 @@ export const SelfBuffSkills: ISafeBuffSkills[] = [
       name: 'Plagiarism (Intimidate)',
       levels: [0, 10]
     },
-    getStats: {
-      pctAspd: (x: number): number => x
+    getSkillStats: (a, x) => {
+      if (x === 0) { return defaultSelfBuffStats }
+      const rStats = { ...defaultSelfBuffStats }
+      rStats.pctAspd = x
+      return rStats
     }
   }
 ]

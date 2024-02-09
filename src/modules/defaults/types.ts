@@ -1,31 +1,26 @@
-import { Interface } from "readline"
-import { WeaponList } from "./contsts"
+import { type WeaponList } from './contsts'
 
 export interface IWeaponTypes {
   name: WeaponList
   aspd: number
 }
 
-export interface IWeaponSection{
-  right: IWeaponTypes[],
+export interface IWeaponSection {
+  right: IWeaponTypes[]
   left: IWeaponTypes[]
 }
 
-export interface ICharWeapons{ // TODO string -> WeaponList
+export interface ICharWeapons { // TODO string -> WeaponList
   right: string
   left: null | string
 }
 
-interface IAspdInfo{
+interface IAspdInfo {
   value: number
-  gearAspdBonus:{
-    flatAspd: number,
+  gearAspdBonus: {
+    flatAspd: number
     aspdBonus: number
   }
-}
-
-interface ISkillBuffStats extends IBaseStats, ISumPStats{
-
 }
 
 export interface ISumPStats {
@@ -34,10 +29,6 @@ export interface ISumPStats {
   flee: number
   baseAspd: number
   pctAspd: number
-}
-
-interface IConsumables{  
-  aspdPotion: number
 }
 
 export interface IBaseStats {
@@ -49,7 +40,19 @@ export interface IBaseStats {
   LUK: number
 }
 
-export interface IStatValue{
+export interface ISkillBuffStats extends IBaseStats, ISumPStats {
+  weaponATK: number
+  baseATKpct: number
+  flatAtk: number
+  maxSPpct: number
+  flatMatk: number
+}
+
+interface IConsumables {
+  aspdPotion: number
+}
+
+export interface IStatValue {
   name: keyof IBaseStats
   amount: number
 }
@@ -70,7 +73,7 @@ export interface IClassDescription {
   jobStatBonus: IBaseStats
   weaponsASPDMod: IWeaponSection
   usableAspdPotions: [boolean, boolean, boolean, boolean]
-  selfBuffList: number[] | null
+  selfBuffList: number[] | undefined
 }
 
 export interface IClassFields {
@@ -83,7 +86,7 @@ export interface IStatCap {
   transcendent: number
 }
 
-export interface IBaseInfo{
+export interface IBaseInfo {
   baseStats: IBaseStats
   jobStats: IBaseStats
   maxStats: number
@@ -92,35 +95,23 @@ export interface IBaseInfo{
   levelCap: number
   classId: number
   weapons: ICharWeapons
-  aspd: IAspdInfo,
-  consumables: IConsumables,
+  aspd: IAspdInfo
+  consumables: IConsumables
   skillsUsedOnChar: Array<[number, number]> | null
   skillBuffStats: ISkillBuffStats
 }
 
-export interface ISafeBuffSkills{
-  description:{
-    id:number,
-    type: string,
-    name: string,
+export interface ISelfBuffSkills {
+  description: {
+    id: number
+    type: string
+    name: string
     levels: [number, number]
   }
-  getStats:{
-    hit?:(x: number, isProperWeapon?:boolean)=> number ,
-    crit?:(x: number)=> number ,
-    flee?:(x: number)=> number ,
-    pctAspd?:(x: number)=> number ,
-    baseAspd?:(x: number)=> number ,
-    baseSTR?:(x: number, stat?:number)=> number ,
-    baseAGI?:(x: number, stat?:number)=> number ,
-    baseDEX?:(x: number, stat?:number)=> number ,
-    baseINT?:(x: number, stat?:number)=> number ,
-    baseVIT?:(x: number, stat?:number)=> number ,
-    baseLUK?:(x: number, stat?:number)=> number ,
-    weaponATK?:(x: number, isProperWeapon?:boolean)=> number ,
-    baseATKpct?:(x: number)=> number ,
-    baseMATKpct?:(x: number)=> number ,
-    baseATK?:(x: number)=> number ,
-    maxSPpct?:(x: number)=> number ,
-  }
+  getSkillStats: (a: IBaseStats, x: number) => ISkillBuffStats
+}
+
+export interface IAspdPotion {
+  name: string
+  bonus: () => number
 }

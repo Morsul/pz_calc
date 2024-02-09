@@ -1,11 +1,10 @@
 import React from 'react'
-import { type ReactElement } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { changeAspdPotion, getJobID } from '../../charSlice'
 import { ClassInfo } from '../../defaults/classInfo'
 import { aspdPotion } from '../../defaults/consumables'
 
-export const AspdPotion = (): ReactElement => {
+export const AspdPotion = (): JSX.Element => {
   const usablePots = ClassInfo[useSelector(getJobID)].usableAspdPotions
   // useEffect(() => {
   // }, [])

@@ -10,7 +10,7 @@ export const StatManualCalc = (): ReactElement[] => { // TODO: fully rerenders o
 
   return (
     Object.values(PrimaryStats).map((e) =>
-    <StatField
+      <StatField
         key={'manual_' + e}
         statName={e}
         currentVal={baseStats[e]}/>
